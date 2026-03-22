@@ -1,0 +1,23 @@
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = process.env.JWT_SECRET || 'inkwell_secret_2025';
+
+const auth = (req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) return res.status(401).json({ message: 'No token provided' });
+  try {
+    req.user = jwt.verify(token, JWT_SECRET);
+    next();
+  } catch {
+    res.status(403).json({ message: 'Invalid or expired token' });
+  }
+};
+
+const optionalAuth = (req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  if (token) {
+    try { req.user = jwt.verify(token, process.env.JWT_SECRET || 'inkwell_secret_2025'); } catch {}
+  }
+  next();
+};
+
+module.exports = { auth, optionalAuth };
