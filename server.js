@@ -4,7 +4,7 @@ const cors     = require('cors');
 const path     = require('path');
 const fs       = require('fs');
 
-const MONGO_URI  = 'mongodb+srv://inkwelladmin:GJq7Hj38hDslU3wu@inkwell.fry0kqj.mongodb.net/inkwell?retryWrites=true&w=majority&appName=inkwell';
+const MONGO_URI = 'mongodb+srv://inkwelladmin:2W23TUyZXDl4IZ7c@inkwell.fry0kqj.mongodb.net/inkwell?retryWrites=true&w=majority&appName=inkwell';;
 const JWT_SECRET = 'inkwell_secret_2025';
 const EMAIL_USER = 'inkwellsupportteam@gmail.com';
 const EMAIL_PASS = 'uwlbakny cxntaomv';
