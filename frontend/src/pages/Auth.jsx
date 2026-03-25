@@ -6,9 +6,9 @@ function AuthLayout({ children, title, sub }) {
   return (
     <div style={s.page}>
       <div style={s.card}>
-        <div style={s.logo}>
-          <svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#242424"/><path d="M12 28V12l8 10 8-10v16" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/></svg>
-        </div>
+       <div style={s.logo}>
+  <img src="/iw.jpg" alt="Inkwell" style={{ width: 40, height: 40, borderRadius: '50%', objectFit: 'cover' }} />
+</div>
         <h1 style={s.title}>{title}</h1>
         <p style={s.sub}>{sub}</p>
         {children}
