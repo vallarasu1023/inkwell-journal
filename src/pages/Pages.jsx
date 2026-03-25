@@ -810,3 +810,4 @@ const dr = {
   publishBtn: { padding: '7px 18px', background: '#1a8917', color: '#fff', border: 'none', borderRadius: 999, fontSize: 13, fontWeight: 500, cursor: 'pointer', textAlign: 'center' },
   deleteBtn:  { padding: '7px 18px', background: '#fff', color: '#c00', border: '1px solid #ffd0d0', borderRadius: 999, fontSize: 13, cursor: 'pointer', textAlign: 'center' },
 };
+

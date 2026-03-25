@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
-export const PEXELS_KEY = process.env.REACT_APP_PEXELS_KEY || '78a3ea3a24024b2c9a62e170130bbe1b';
+export const API_URL = process.env.REACT_APP_API_URL || 'https://inkwell-journal.onrender.com';
+export const PEXELS_KEY = process.env.REACT_APP_PEXELS_KEY || '';
 
 const api = axios.create({ baseURL: `${API_URL}/api` });
 
@@ -21,5 +21,4 @@ api.interceptors.response.use(
     return Promise.reject(err);
   }
 );
-
 export default api;

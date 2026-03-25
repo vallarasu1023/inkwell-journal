@@ -133,8 +133,8 @@ export default function PostDetail() {
     <div>
       <style>{postDetailResponsiveCSS}</style>
 
-      <div style={{ position: 'fixed', top: 57, left: 0, right: 0, zIndex: 100, height: 2, background: '#f2f2f2' }}>
-        <div style={{ height: '100%', background: '#1a8917', width: `${progress}%`, transition: 'width 0.1s' }} />
+      <div style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 9999, height: 3, background: '#f2f2f2' }}>
+        <div style={{ height: 3, background: '#1a8917', width: `${progress}%`, transition: 'width 0.15s linear' }} />
       </div>
 
       <div ref={contentRef} className="content-container post-container" style={{ paddingTop: 48, paddingBottom: 80 }}>

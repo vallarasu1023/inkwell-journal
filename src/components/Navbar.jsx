@@ -288,19 +288,25 @@ export default function Navbar() {
                       <div style={s.dropEmail}>{user.email}</div>
                     </div>
                     <div style={s.dropDivider} />
-                    {[
-                      { to: `/profile/${user.id}`, label: 'Profile' },
-                      { to: '/write', label: 'Write a story' },
-                      { to: '/drafts', label: '📝 Drafts' },
-                      { to: '/bookmarks', label: 'Bookmarks' },
+                   {[
+                      { to: `/profile/${user.id}`, label: 'Profile', icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
+                      { to: '/write', label: 'Write a story', icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> },
+                      { to: '/drafts', label: 'Drafts', icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> },
+                      { to: '/bookmarks', label: 'Bookmarks', icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg> },
                     ].map(item => (
                       <Link key={item.to} to={item.to} style={s.dropItem} onClick={() => setDropOpen(false)}>
-                        {item.label}
+                        <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                          {item.icon}
+                          {item.label}
+                        </span>
                       </Link>
                     ))}
                     <div style={s.dropDivider} />
                     <button style={s.dropItem} onClick={() => { logout(); setDropOpen(false); navigate('/'); }}>
-                      Sign out
+                      <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                        Sign out
+                      </span>
                     </button>
                     <div style={s.dropSub}><em>{user.email}</em></div>
                   </div>

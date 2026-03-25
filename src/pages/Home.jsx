@@ -27,7 +27,7 @@ function SkeletonPost() {
 
 function getImgUrl(coverImage) {
   if (!coverImage) return null;
-  return coverImage.startsWith('http') ? coverImage : `http://localhost:8080${coverImage}`;
+  return coverImage.startsWith('http') ? coverImage : (process.env.REACT_APP_API_URL || 'https://inkwell-journal.onrender.com') + coverImage;
 }
 
 export default function Home() {
@@ -43,18 +43,23 @@ export default function Home() {
     setLoading(true);
     const params = {};
     if (activeTab !== 'For you' && activeTab !== 'Following') params.category = activeTab;
-    api.get('/posts', { params }).then(r => setPosts(r.data.posts)).catch(() => {}).finally(() => setLoading(false));
+    api.get('/posts', { params })
+      .then(r => setPosts(Array.isArray(r.data.posts) ? r.data.posts : []))
+      .catch(() => setPosts([]))
+      .finally(() => setLoading(false));
   }, [activeTab]);
 
   useEffect(() => {
-    api.get('/posts/trending').then(r => setTrending(r.data)).catch(() => {});
+    api.get('/posts/trending')
+      .then(r => setTrending(Array.isArray(r.data) ? r.data : []))
+      .catch(() => setTrending([]));
   }, []);
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
     try {
       await api.post('/auth/newsletter', { email });
-      setSubMsg('You\'re subscribed! 🎉');
+      setSubMsg("You're subscribed! 🎉");
       setEmail('');
     } catch { setSubMsg('Something went wrong. Try again.'); }
   };
@@ -177,7 +182,11 @@ function LandingPage() {
 
 function TrendingSection() {
   const [posts, setPosts] = useState([]);
-  useEffect(() => { api.get('/posts/trending').then(r => setPosts(r.data)).catch(() => {}); }, []);
+  useEffect(() => {
+    api.get('/posts/trending')
+      .then(r => setPosts(Array.isArray(r.data) ? r.data : []))
+      .catch(() => setPosts([]));
+  }, []);
   return (
     <div style={{ borderTop: '1px solid #242424', padding: '32px 0' }}>
       <div className="container">
